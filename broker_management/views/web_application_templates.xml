@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="crm_lead_submission">
+        <t t-call="website.layout">
+            <t t-set="additional_title">Submit Lead</t>
+            <div id="wrap" class="container" style="font-family: 'Roboto', sans-serif;">
+                <br/>
+                <h1 class="mb-4 text-center">Funding Application</h1>
+                <h2 class="mb-4">Business Information</h2>
+                <form id="crm_lead_form" action="/crm/lead_submission" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <input type="hidden" name="web_submission" value="1"/>
+
+                    <div class="row">
+                        <!-- VAT & Legal Corporate Name -->
+                        <div class="col-md-6">
+                            <label class="form-label" for="legal_corporate_name">Legal Corporate Name</label>
+                            <input id="legal_corporate_name" type="text" class="form-control"
+                                   name="legal_corporate_name"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="legal_corporate_name">Company Name</label>
+                            <input id="company_name" type="text" class="form-control"
+                                   name="company_name"/>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="vat">Federal Tax ID (VAT)
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input id="vat" type="text" class="form-control" name="vat" required="1"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="state_id">Incorporation State</label>
+                            <select id="state_id" class="form-control" name="state_id">
+                                <option value="">Select State</option>
+                                <t t-foreach="states" t-as="state">
+                                    <option t-att-value="state.id">
+                                        <t t-esc="state.name"/>
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="industry">Industry</label>
+                            <select id="industry" class="form-control" name="industry">
+                                <option value="">Select Industry</option>
+                                <t t-foreach="industries" t-as="industry">
+                                    <option t-att-value="industry.id">
+                                        <t t-esc="industry.name"/>
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="legal_entity">Legal Entity</label>
+                            <select id="legal_entity" class="form-control" name="legal_entity">
+                                <option value="">Select Entity</option>
+                                <option value="llc">LLC</option>
+                                <option value="corporation">Corporation</option>
+                                <option value="sole_prop">Sole Prop.</option>
+                                <option value="partnership">Partnership</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="phone">Phone</label>
+                            <input id="phone" type="text" class="form-control" name="phone"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="city">City</label>
+                            <input id="city" type="text" class="form-control" name="city"/>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="zip">Zip Code</label>
+                            <input id="zip" type="text" class="form-control" name="zip"/>
+                        </div>
+                        <!-- Business Start Date -->
+                        <div class="col-md-6">
+                            <label class="form-label" for="business_start_date">Business Start Date</label>
+                            <input id="business_start_date" type="date" class="form-control"
+                                   name="business_start_date"/>
+                        </div>
+                    </div>
+
+                    <h3 class="my-4">Merchant/Owner 1</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner1_first_name">First Name</label>
+                            <input id="owner1_first_name" type="text" class="form-control" name="owner1_first_name"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner1_last_name">Last Name</label>
+                            <input id="owner1_last_name" type="text" class="form-control" name="owner1_last_name"/>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner1_email">Email Address</label>
+                            <input id="owner1_email" type="email" class="form-control" name="owner1_email"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner1_ownership_percent">Ownership (%)</label>
+                            <input id="owner1_ownership_percent" type="number" class="form-control"
+                                   name="owner1_ownership_percent"/>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner1_ssn">Social Security Number (SSN)</label>
+                            <input id="owner1_ssn" type="text" class="form-control" name="owner1_ssn"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner1_birth_date">Date of Birth</label>
+                            <input id="owner1_birth_date" type="date" class="form-control" name="owner1_birth_date"/>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner1_phone">Phone</label>
+                            <input id="owner1_phone" type="text" class="form-control" name="owner1_phone"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner1_mobile">Mobile</label>
+                            <input id="owner1_mobile" type="text" class="form-control" name="owner1_mobile"/>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner1_street">Street Address</label>
+                            <input id="owner1_street" type="text" class="form-control" name="owner1_street"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner1_city">City</label>
+                            <input id="owner1_city" type="text" class="form-control" name="owner1_city"/>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner1_state_id">State</label>
+                            <select id="owner1_state_id" class="form-control" name="owner1_state_id">
+                                <option value="">Select State</option>
+                                <t t-foreach="states" t-as="state">
+                                    <option t-att-value="state.id">
+                                        <t t-esc="state.name"/>
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner1_zip">Zip Code</label>
+                            <input id="owner1_zip" type="text" class="form-control" name="owner1_zip"/>
+                        </div>
+                    </div>
+
+                    <h3 class="my-4">Merchant/Owner 2</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner2_first_name">First Name</label>
+                            <input id="owner2_first_name" type="text" class="form-control" name="owner2_first_name"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner2_last_name">Last Name</label>
+                            <input id="owner2_last_name" type="text" class="form-control" name="owner2_last_name"/>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner2_email">Email Address</label>
+                            <input id="owner2_email" type="email" class="form-control" name="owner2_email"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner2_ownership_percent">Ownership (%)</label>
+                            <input id="owner2_ownership_percent" type="number" class="form-control"
+                                   name="owner2_ownership_percent"/>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner2_ssn">Social Security Number (SSN)</label>
+                            <input id="owner2_ssn" type="text" class="form-control" name="owner2_ssn"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner2_birth_date">Date of Birth</label>
+                            <input id="owner2_birth_date" type="date" class="form-control" name="owner2_birth_date"/>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner2_phone">Phone</label>
+                            <input id="owner2_phone" type="text" class="form-control" name="owner2_phone"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner2_mobile">Mobile</label>
+                            <input id="owner2_mobile" type="text" class="form-control" name="owner2_mobile"/>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner2_street">Street Address</label>
+                            <input id="owner2_street" type="text" class="form-control" name="owner2_street"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner2_city">City</label>
+                            <input id="owner2_city" type="text" class="form-control" name="owner2_city"/>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner2_state_id">State</label>
+                            <select id="owner2_state_id" class="form-control" name="owner2_state_id">
+                                <option value="">Select State</option>
+                                <t t-foreach="states" t-as="state">
+                                    <option t-att-value="state.id">
+                                        <t t-esc="state.name"/>
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="owner2_zip">Zip Code</label>
+                            <input id="owner2_zip" type="text" class="form-control" name="owner2_zip"/>
+                        </div>
+                    </div>
+
+                    <h3 class="my-4">Attachments</h3>
+
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Upload Bank Statements
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="file" class="form-control" name="attachment_bank_statements_ids"
+                                   multiple="True" required="1"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Upload IDs
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="file" class="form-control" name="attachment_id_ids" multiple="True"
+                                   required="1"/>
+                        </div>
+                    </div>
+
+                    <!-- Attachments Section -->
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Upload Voided Checks
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="file" class="form-control" name="attachment_voided_check_ids" multiple="True"
+                                   required="1"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Upload Proof of EIN
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="file" class="form-control" name="attachment_proof_of_ein_ids" multiple="True"
+                                   required="1"/>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <label class="form-label">Upload Additional Documents</label>
+                            <input type="file" class="form-control" name="attachment_extras_ids" multiple="True"/>
+                        </div>
+                    </div>
+                    <!-- Submit Button -->
+                    <div class="text-end mt-4">
+                        <button type="submit" class="btn btn-md btn-primary">Submit</button>
+                    </div>
+                    <br/>
+                </form>
+            </div>
+        </t>
+    </template>
+</odoo>

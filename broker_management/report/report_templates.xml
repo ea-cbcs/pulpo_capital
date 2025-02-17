@@ -1,0 +1,1333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="credit_report">
+            <t t-call="web.html_container">
+                <t t-set="data_report_margin_top" t-value="12"/>
+                <t t-set="data_report_header_spacing" t-value="0"/>
+                <t t-call="web.internal_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <style>
+                                @media (min-width: 992px) {
+                                .container {
+                                width: 100%;
+                                }
+                                }
+
+                                @media (min-width: 768px) {
+                                .container {
+                                width: 100%;
+                                }
+                                }
+
+                                .container {
+                                width: 100%;
+                                }
+
+                                body {
+                                margin: 0px !important;
+                                }
+
+                                body.o_in_iframe {
+                                margin-top: 0px !important;
+                                }
+
+                                .header {
+                                display: none !important;
+                                }
+
+                                .main-data {
+                                width: 100%;
+                                }
+
+                                .centered {
+                                width: 900px;
+                                margin: auto;
+
+                                }
+
+                                .center_div {
+                                width: 100%;
+                                }
+
+                                .left_div {
+                                width: 50%;
+                                display: inline-block;
+                                float: left;
+                                }
+
+                                .right_div {
+                                width: 50%;
+                                <!--display: inline-block;-->
+                                float: left;
+                                }
+
+                                .clearfloat {
+                                clear: both;
+                                float: none;
+                                display: block;
+                                }
+
+                                .solid {
+                                font-weight: bold;
+                                margin-right: 5px;
+                                }
+
+                                .liquid {
+                                float: right;
+                                width: 300px;
+                                }
+
+                                table {
+                                border: 1px solid black !important;
+                                }
+
+                                td {
+                                font-size: 14px;
+                                border: 1px solid black;
+                                padding: 5px;
+                                margin: 0px 0px 10px 0px;
+                                }
+
+                                .invoice-no .liquid {
+                                text-align: justify;
+                                }
+
+                                table th {
+                                <!-- font-size: 15px; -->
+                                border: 1px solid black !important;
+                                }
+
+                                div-top {
+                                border: 1px solid;
+                                padding: 7px;
+                                border-radius: 0px;
+                                width: 100%;
+                                border-top: none;
+
+                                }
+
+                                .no-margin {
+                                margin-top: 0px;
+                                margin-bottom: 0px;
+                                }
+
+                                .enter_div {
+                                width: 100%;
+                                }
+
+                                .left {
+                                width: 50%;
+                                display: inline-block;
+                                float: left;
+                                text-align:left;
+                                }
+
+                                .right {
+                                width: 40%;
+                                display: inline-block;
+                                float: right;
+                                margin-left: 50px;
+                                }
+
+                                .dis p {
+                                margin: 0px;
+                                margin-left: 90px;
+                                }
+
+                                .tot {
+                                margin-left: 32px;
+                                }
+                                .liquid2 {
+                                float: right;
+                                }
+
+                                .topheader {
+                                width: 100%;
+                                display: flex;
+                                /* Change from inline-block to flex */
+                                align-items: center;
+                                /* Optional: Align items vertically */
+                                }
+
+                                p {
+                                font-size: 15px;
+                                margin: 0;
+                                /* Remove default margins for paragraphs */
+                                }
+
+                                .left-content {
+                                width: 60%;
+                                float: left;
+                                }
+
+                                .right-content {
+                                width: 40%;
+                                text-align: center;
+                                }
+
+                                .left-div {
+                                width: 50%;
+                                float: left;
+                                text-align: left;
+                                border: none !important;
+                                font-weight: bold;
+                                font-size: 30px;
+
+                                }
+
+                                .right-div {
+                                width: 50%;
+                                float: right;
+                                text-align: right;
+                                border: none !important;
+
+                                }
+
+                                .lefttop {
+                                width: 30%;
+                                float: left;
+                                text-align: left;
+                                font-weight: bold;
+                                font-size: 30px;
+                                <!-- border: none !important; -->
+                                <!-- border: 1px solid black !important; -->
+
+                                }
+                                .centertop {
+                                width: 40%;
+                                text-align: center;
+                                font-weight: bold;
+                                margin-left:30%;
+
+                                <!-- border: 1px solid black !important; -->
+                                }
+
+                                .righttop {
+                                width: 30% !important;
+                                float: right;
+                                text-align: right;
+                                <!-- border: none !important; -->
+                                <!-- border: 1px solid black !important; -->
+
+
+                                }
+
+                                .center_div_top {
+                                width: 100%;
+                                <!-- border: 0px solid !important; -->
+                                height: 157px;
+                                }
+
+                                .center_table {
+                                width: 100%;
+                                border: 1px solid black;
+                                height: 120px;
+                                }
+
+                                .table-container {
+                                width: 100%;
+                                <!--                                 display-inline: block;
+                                                                justify-content: space-between; -->
+                                }
+
+                                .tablec {
+                                border-collapse: collapse;
+                                width: 45%;
+                                float:left;
+                                }
+                                .tablecs {
+                                border-collapse: collapse;
+                                width: 45%;
+                                float:right;
+                                }
+
+                                .tablec td,
+                                .tablec th {
+                                border: 1px solid black;
+                                padding: 8px;
+                                text-align: left;
+                                <!-- font-size:10px; -->
+                                }
+                                .tablecs td,
+                                .tablecs th {
+                                border: 1px solid black;
+                                padding: 5px;
+                                text-align: right;
+                                <!-- font-size:10px; -->
+                                }
+
+                                h2 {
+                                background-color: #BEBEBE;
+                                padding: 8px;
+                                font-size:17px;
+                                }
+
+                                .center_div_main {
+                                width: 100%;
+                                border: none;
+                                }
+
+                                .left_div_main {
+                                width: 50%;
+                                float: left;
+                                text-align: left;
+                                border: none !important;
+
+                                }
+
+                                .right_div_main {
+                                width: 50%;
+                                float: left;
+                                text-align: right;
+                                border: none !important;
+
+                                }
+
+                            </style>
+                            <div class="main_warper">
+
+                                <div class="d-flex justify-content-between">
+
+                                    <div>
+                                        <img t-attf-src="data:image/*;base64,{{o.company_id.logo}}" t-att-alt="Logo"
+                                             style="width: 50% !important; height: 100px !important;"/>
+                                    </div>
+
+                                    <div style="text-align:right;">
+                                        <span style="color:#13274F !important; font-size:25px !important; font-weight: bold;">
+                                            CREDIT APPLICATION
+                                        </span>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <span style="font-size:18px !important; margin-top:15px !important;">Questions?
+                                            Call 347.416.4747
+                                        </span>
+
+                                    </div>
+                                </div>
+
+                                <br/>
+                                <div class="center_div_main">
+
+                                    <div class="left_div_main pb-2">
+                                        <span style="color:#13274F !important; font-size:23px !important; font-weight: bold;">
+                                            Company Information
+                                        </span>
+                                    </div>
+
+                                    <div class="right_div_main" style="text-align:right;">
+                                        <span style="font-size:15px !important; color:#13274F !important;">Funding
+                                            Specialist:
+                                        </span>
+                                        <span style="font-size:15px !important; text-decoration: underline !important; margin-right:50px !important;"
+                                              t-esc="o.user_id.name"/>
+
+                                    </div>
+                                </div>
+
+                                <div class="clearfloat"/>
+
+
+                                <table style="width:100% !important; color:#13274F !important; font-weight: bold; padding: 10px !important;">
+                                    <tr>
+                                        <td colspan="2" style="width:100% !important; text-align:left !important;">
+                                            <span>Legal Company Name (&amp; DBA):</span>
+                                            <span style="font-weight:normal !important; color:black !important;"
+                                                  t-esc="o.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Website:</span>
+                                            <span style="font-weight:normal !important; color:black !important;"
+                                                  t-esc="o.website"/>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Industry:</span>
+                                            <span style="font-weight:normal !important; color:black !important;"
+                                                  t-esc="o.industry.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Incorporation State:</span>
+                                            <span style="font-weight:normal !important; color:black !important;"
+                                                  t-esc="o.state_id.name"/>
+                                            <span style="margin-left:50px !important;">Tax ID:</span>
+                                            <span style="font-weight:normal !important; color:black !important;"
+                                                  t-esc="o.vat"/>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Legal Entity:</span>
+
+                                            <label style="margin-left:20px !important; color:black !important;"
+                                                   t-if="o.legal_entity == 'llc'" class="checkbox">☑ LLC
+                                            </label>
+                                            <label style="margin-left:20px !important; color:black !important;"
+                                                   t-else="" class="checkbox">☐ LLC
+                                            </label>
+
+                                            <label style="margin-left:20px !important; color:black !important;"
+                                                   t-if="o.legal_entity == 'corporation'" class="checkbox">☑
+                                                Corporation
+                                            </label>
+                                            <label style="margin-left:20px !important; color:black !important;"
+                                                   t-else="" class="checkbox">☐ Corporation
+                                            </label>
+
+                                            <label style="margin-left:20px !important; color:black !important;"
+                                                   t-if="o.legal_entity == 'sole_prop'" class="checkbox">☑ Sole
+                                                Prop.
+                                            </label>
+                                            <label style="margin-left:20px !important; color:black !important;"
+                                                   t-else="" class="checkbox">☐ Sole Prop.
+                                            </label>
+
+                                            <label style="margin-left:20px !important; color:black !important;"
+                                                   t-if="o.legal_entity == 'partnership'" class="checkbox">☑ Partnership
+                                            </label>
+                                            <label style="margin-left:20px !important; color:black !important;"
+                                                   t-else="" class="checkbox">☐ Partnership
+                                            </label>
+                                            <label style="margin-left:20px !important; color:black !important;"
+                                                   t-if="o.legal_entity == 'other'" class="checkbox">☑ Other
+                                            </label>
+                                            <label style="margin-left:20px !important; color:black !important;"
+                                                   t-else="" class="checkbox">☐ Other
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Business Address:</span>
+                                            <span style="font-weight:normal !important; color:black !important;"
+                                                  t-esc="o.street"/>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>City:</span>
+                                            <span style="font-weight:normal !important; color:black !important;"
+                                                  t-esc="o.city"/>
+                                            <span style="margin-left:20px !important;">State:</span>
+                                            <span style="font-weight:normal !important; color:black !important;"
+                                                  t-esc="o.state_id.name"/>
+                                            <span style="margin-left:20px !important;">Zip:</span>
+                                            <span style="font-weight:normal !important; color:black !important;"
+                                                  t-esc="o.zip"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Business Start Date:</span>
+                                            <span style="font-weight:normal !important; color:black !important;"
+                                                  t-esc="o.business_start_date"
+                                                  t-options='{"widget": "date", "format": "MM/dd/yyyy"}'/>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Business Phone:</span>
+                                            <span style="font-weight:normal !important; color:black !important;"
+                                                  t-esc="o.phone"/>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <div class="clearfloat"/>
+                                <br/>
+                                <div class="center_div_main">
+
+                                    <div class="left_div_main">
+                                        <span style="color:#13274F !important; font-size:17px !important; font-weight: bold;">
+                                            Business Owner Information (1)
+                                        </span>
+                                    </div>
+
+                                    <div class="right_div_main" style="text-align:left !important;">
+                                        <span style="color:#13274F !important; font-size:17px !important; font-weight: bold;">
+                                            Business Owner Information (2)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <br/>
+
+                                <table style="width:100% !important; color:#13274F !important; font-weight:bold; padding: 10px !important;">
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>First Name:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 1">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[0].name"/>
+                                            </t>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>First Name:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 2">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[1].name"/>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Last Name:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 1">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[0].last_name"/>
+                                            </t>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Last Name:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 2">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[1].last_name"/>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>% Ownership:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 1">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[0].ownership_percent"/>
+
+                                            </t>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>% Ownership:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 2">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[1].ownership_percent"/>
+
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Home Address:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 1">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[0].street"/>
+
+                                            </t>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Home Address:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 2">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[1].street"/>
+
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>City:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 1">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[0].city"/>
+                                            </t>
+                                            <span style="margin-left:20px !important;">State:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 1">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[0].state_id.name"/>
+                                            </t>
+                                            <span style="margin-left:20px !important;">Zip:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 1">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[0].zip"/>
+                                            </t>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>City:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 2">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[1].city"/>
+                                            </t>
+                                            <span style="margin-left:20px !important;">State:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 2">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[1].state_id.name"/>
+                                            </t>
+                                            <span style="margin-left:20px !important;">Zip:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 2">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[1].zip"/>
+                                            </t>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Mobile:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 1">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[0].mobile"/>
+
+                                            </t>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Mobile:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 2">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[1].mobile"/>
+
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Social Security No:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 1">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[0].social_security_no"/>
+
+                                            </t>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Social Security No:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 2">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[1].social_security_no"/>
+
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Date of Birth:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 1">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[0].birth_date"
+                                                      t-options='{"widget": "date", "format": "MM/dd/yyyy"}'/>
+
+                                            </t>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Date of Birth:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 2">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[1].birth_date"
+                                                      t-options='{"widget": "date", "format": "MM/dd/yyyy"}'/>
+
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>E-mail Address:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 1">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[0].email"/>
+
+                                            </t>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>E-mail Address:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 2">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[1].email"/>
+
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <br/>
+                                <p style="text-align:left; font-size:11px !important;">
+                                    The Merchant and Owner(s)/Officer(s) identified above (individually, an “Applicant”)
+                                    each represents, acknowledges and agrees that (1) all information and documents
+                                    provided to We RFunding, LLC. including credit card processor statements are true,
+                                    accurate and complete, (2) Applicant will immediately notify Company of any change
+                                    in such information or financial condition, (3) Applicant authorizes Company to
+                                    disclose all information and documents that Company may obtain including credit
+                                    reports to other persons or entities (collectively, “Assignees”) that may be
+                                    involved with or acquire commercial loans or purchases of future receivables
+                                    including Merchant Cash Advance transactions, including without limitation the
+                                    application therefore (collectively, “Transactions”) and each assignee is authorized
+                                    to use such information and documents and share such information and documents with
+                                    other Assignees, in connection with potential Transactions, (4) Each Assignee will
+                                    rely upon the accuracy and completeness of such information and documents (5)
+                                    Company, Assignees, and each of their representatives, successors, assigns and
+                                    designees (collectively, “Recipients”) are authorized to request and receive any
+                                    investigative reports, credit reports, statements from creditors or financial
+                                    institutions, verification of information, or any other information that a recipient
+                                    deems necessary, (6) Applicant waives and releases any claims against Recipients and
+                                    any information providers arising from any act or omission relating to the
+                                    requesting, receiving or release of information, and (7) Each Owner/Officer
+                                    represents that he or she is authorized to sign this form on behalf of Merchant
+                                </p>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <template id="credit_report_fake">
+            <t t-call="web.html_container">
+                <t t-set="data_report_margin_top" t-value="12"/>
+                <t t-set="data_report_header_spacing" t-value="0"/>
+                <t t-call="web.internal_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <style>
+                                @media (min-width: 992px) {
+                                .container {
+                                width: 100%;
+                                }
+                                }
+
+                                @media (min-width: 768px) {
+                                .container {
+                                width: 100%;
+                                }
+                                }
+
+                                .container {
+                                width: 100%;
+                                }
+
+                                body {
+                                margin: 0px !important;
+                                }
+
+                                body.o_in_iframe {
+                                margin-top: 0px !important;
+                                }
+
+                                .header {
+                                display: none !important;
+                                }
+
+                                .main-data {
+                                width: 100%;
+                                }
+
+                                .centered {
+                                width: 900px;
+                                margin: auto;
+
+                                }
+
+                                .center_div {
+                                width: 100%;
+                                }
+
+                                .left_div {
+                                width: 50%;
+                                display: inline-block;
+                                float: left;
+                                }
+
+                                .right_div {
+                                width: 50%;
+                                <!--display: inline-block;-->
+                                float: left;
+                                }
+
+                                .clearfloat {
+                                clear: both;
+                                float: none;
+                                display: block;
+                                }
+
+                                .solid {
+                                font-weight: bold;
+                                margin-right: 5px;
+                                }
+
+                                .liquid {
+                                float: right;
+                                width: 300px;
+                                }
+
+                                table {
+                                border: 1px solid black !important;
+                                }
+
+                                td {
+                                font-size: 14px;
+                                border: 1px solid black;
+                                padding: 5px;
+                                margin: 0px 0px 10px 0px;
+                                }
+
+                                .invoice-no .liquid {
+                                text-align: justify;
+                                }
+
+                                table th {
+                                <!-- font-size: 15px; -->
+                                border: 1px solid black !important;
+                                }
+
+                                div-top {
+                                border: 1px solid;
+                                padding: 7px;
+                                border-radius: 0px;
+                                width: 100%;
+                                border-top: none;
+
+                                }
+
+                                .no-margin {
+                                margin-top: 0px;
+                                margin-bottom: 0px;
+                                }
+
+                                .enter_div {
+                                width: 100%;
+                                }
+
+                                .left {
+                                width: 50%;
+                                display: inline-block;
+                                float: left;
+                                text-align:left;
+                                }
+
+                                .right {
+                                width: 40%;
+                                display: inline-block;
+                                float: right;
+                                margin-left: 50px;
+                                }
+
+                                .dis p {
+                                margin: 0px;
+                                margin-left: 90px;
+                                }
+
+                                .tot {
+                                margin-left: 32px;
+                                }
+                                .liquid2 {
+                                float: right;
+                                }
+
+                                .topheader {
+                                width: 100%;
+                                display: flex;
+                                /* Change from inline-block to flex */
+                                align-items: center;
+                                /* Optional: Align items vertically */
+                                }
+
+                                p {
+                                font-size: 15px;
+                                margin: 0;
+                                /* Remove default margins for paragraphs */
+                                }
+
+                                .left-content {
+                                width: 60%;
+                                float: left;
+                                }
+
+                                .right-content {
+                                width: 40%;
+                                text-align: center;
+                                }
+
+                                .left-div {
+                                width: 50%;
+                                float: left;
+                                text-align: left;
+                                border: none !important;
+                                font-weight: bold;
+                                font-size: 30px;
+
+                                }
+
+                                .right-div {
+                                width: 50%;
+                                float: right;
+                                text-align: right;
+                                border: none !important;
+
+                                }
+
+                                .lefttop {
+                                width: 30%;
+                                float: left;
+                                text-align: left;
+                                font-weight: bold;
+                                font-size: 30px;
+                                <!-- border: none !important; -->
+                                <!-- border: 1px solid black !important; -->
+
+                                }
+                                .centertop {
+                                width: 40%;
+                                text-align: center;
+                                font-weight: bold;
+                                margin-left:30%;
+
+                                <!-- border: 1px solid black !important; -->
+                                }
+
+                                .righttop {
+                                width: 30% !important;
+                                float: right;
+                                text-align: right;
+                                <!-- border: none !important; -->
+                                <!-- border: 1px solid black !important; -->
+
+
+                                }
+
+                                .center_div_top {
+                                width: 100%;
+                                <!-- border: 0px solid !important; -->
+                                height: 157px;
+                                }
+
+                                .center_table {
+                                width: 100%;
+                                border: 1px solid black;
+                                height: 120px;
+                                }
+
+                                .table-container {
+                                width: 100%;
+                                <!--                                 display-inline: block;
+                                                                justify-content: space-between; -->
+                                }
+
+                                .tablec {
+                                border-collapse: collapse;
+                                width: 45%;
+                                float:left;
+                                }
+                                .tablecs {
+                                border-collapse: collapse;
+                                width: 45%;
+                                float:right;
+                                }
+
+                                .tablec td,
+                                .tablec th {
+                                border: 1px solid black;
+                                padding: 8px;
+                                text-align: left;
+                                font-size:10px;
+                                }
+                                .tablecs td,
+                                .tablecs th {
+                                border: 1px solid black;
+                                padding: 5px;
+                                text-align: right;
+                                font-size:10px;
+                                }
+
+                                h2 {
+                                background-color: #BEBEBE;
+                                padding: 8px;
+                                font-size:17px;
+                                }
+
+                                .center_div_main {
+                                width: 100%;
+                                border: none;
+                                }
+
+                                .left_div_main {
+                                width: 50%;
+                                float: left;
+                                text-align: left;
+                                border: none !important;
+
+                                }
+
+                                .right_div_main {
+                                width: 50%;
+                                float: left;
+                                text-align: right;
+                                border: none !important;
+
+                                }
+
+
+                            </style>
+                            <div class="main_warper">
+
+                                <div class="d-flex justify-content-between">
+
+                                    <div>
+                                        <img t-attf-src="data:image/*;base64,{{o.company_id.logo}}" t-att-alt="Logo"
+                                             style="width: 50% !important; height: 100px !important;"/>
+                                    </div>
+
+                                    <div style="text-align:right;">
+                                        <span style="color:#13274F !important; font-size:25px !important; font-weight: bold;">
+                                            CREDIT APPLICATION
+                                        </span>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <span style="font-size:18px !important; margin-top:15px !important;">Questions?
+                                            Call 347.416.4747
+                                        </span>
+
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="center_div_main">
+
+                                    <div class="left_div_main pb-2">
+                                        <span style="color:#13274F !important; font-size:23px !important; font-weight: bold;">
+                                            Company Information
+                                        </span>
+                                    </div>
+
+                                    <div class="right_div_main" style="text-align:right;">
+                                        <span style="font-size:15px !important; color:#13274F !important;">Funding
+                                            Specialist:
+                                        </span>
+                                        <span style="font-size:15px !important; text-decoration: underline !important; margin-right:50px !important;"
+                                              t-esc="o.user_id.name"/>
+
+                                    </div>
+                                </div>
+
+                                <div class="clearfloat"/>
+
+
+                                <table style="width:100% !important; color:#13274F !important; font-weight: bold; padding: 10px !important; font-size: 8px !important;">
+                                    <tr>
+                                        <td colspan="2" style="width:100% !important; text-align:left !important;">
+                                            <span>Legal Company Name (&amp; DBA):</span>
+                                            <span style="font-weight:normal !important; color:black !important;"
+                                                  t-esc="o.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Website:</span>
+                                            <span style="font-weight:normal !important; color:black !important;"
+                                                  t-esc="o.website"/>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Industry:</span>
+                                            <span style="font-weight:normal !important; color:black !important;"
+                                                  t-esc="o.industry.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Incorporation State:</span>
+                                            <span style="font-weight:normal !important; color:black !important;"
+                                                  t-esc="o.state_id.name"/>
+                                            <span style="margin-left:50px !important;">Tax ID:</span>
+                                            <span style="font-weight:normal !important; color:black !important;"
+                                                  t-esc="o.vat"/>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Legal Entity:</span>
+
+                                            <label style="margin-left:20px !important; color:black !important;"
+                                                   t-if="o.legal_entity == 'llc'" class="checkbox">☑ LLC
+                                            </label>
+                                            <label style="margin-left:20px !important; color:black !important;"
+                                                   t-else="" class="checkbox">☐ LLC
+                                            </label>
+
+                                            <label style="margin-left:20px !important; color:black !important;"
+                                                   t-if="o.legal_entity == 'corporation'" class="checkbox">☑
+                                                Corporation
+                                            </label>
+                                            <label style="margin-left:20px !important; color:black !important;"
+                                                   t-else="" class="checkbox">☐ Corporation
+                                            </label>
+
+                                            <label style="margin-left:20px !important; color:black !important;"
+                                                   t-if="o.legal_entity == 'sole_prop'" class="checkbox">☑ Sole
+                                                Prop.
+                                            </label>
+                                            <label style="margin-left:20px !important; color:black !important;"
+                                                   t-else="" class="checkbox">☐ Sole Prop.
+                                            </label>
+
+                                            <label style="margin-left:20px !important; color:black !important;"
+                                                   t-if="o.legal_entity == 'partnership'" class="checkbox">☑ Partnership
+                                            </label>
+                                            <label style="margin-left:20px !important; color:black !important;"
+                                                   t-else="" class="checkbox">☐ Partnership
+                                            </label>
+                                            <label style="margin-left:20px !important; color:black !important;"
+                                                   t-if="o.legal_entity == 'other'" class="checkbox">☑ Other
+                                            </label>
+                                            <label style="margin-left:20px !important; color:black !important;"
+                                                   t-else="" class="checkbox">☐ Other
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Business Address:</span>
+                                            <span style="font-weight:normal !important; color:black !important;"
+                                                  t-esc="o.street"/>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>City:</span>
+                                            <span style="font-weight:normal !important; color:black !important;"
+                                                  t-esc="o.city"/>
+                                            <span style="margin-left:20px !important;">State:</span>
+                                            <span style="font-weight:normal !important; color:black !important;"
+                                                  t-esc="o.state_id.name"/>
+                                            <span style="margin-left:20px !important;">Zip:</span>
+                                            <span style="font-weight:normal !important; color:black !important;"
+                                                  t-esc="o.zip"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Business Start Date:</span>
+                                            <span style="font-weight:normal !important; color:black !important;"
+                                                  t-esc="o.business_start_date"
+                                                  t-options='{"widget": "date", "format": "MM/dd/yyyy"}'/>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Business Phone:</span>
+                                            <span style="font-weight:normal !important; color:black !important;"
+                                                  t-esc="o.fake_business_phone"/>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <div class="clearfloat"/>
+                                <br/>
+                                <div class="center_div_main">
+
+                                    <div class="left_div_main">
+                                        <span style="color:#13274F !important; font-size:17px !important; font-weight: bold;">
+                                            Business Owner Information (1)
+                                        </span>
+                                    </div>
+
+                                    <div class="right_div_main" style="text-align:left !important;">
+                                        <span style="color:#13274F !important; font-size:17px !important; font-weight: bold;">
+                                            Business Owner Information (2)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <br/>
+
+                                <table style="width:100% !important; color:#13274F !important; font-weight:bold; padding: 10px !important;">
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>First Name:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 1">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[0].name"/>
+                                            </t>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>First Name:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 2">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[1].name"/>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Last Name:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 1">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[0].last_name"/>
+                                            </t>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Last Name:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 2">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[1].last_name"/>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>% Ownership:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 1">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[0].ownership_percent"/>
+
+                                            </t>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>% Ownership:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 2">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[1].ownership_percent"/>
+
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Home Address:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 1">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[0].street"/>
+
+                                            </t>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Home Address:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 2">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[1].street"/>
+
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>City:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 1">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[0].city"/>
+                                            </t>
+                                            <span style="margin-left:20px !important;">State:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 1">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[0].state_id.name"/>
+                                            </t>
+                                            <span style="margin-left:20px !important;">Zip:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 1">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[0].zip"/>
+                                            </t>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>City:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 2">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[1].city"/>
+                                            </t>
+                                            <span style="margin-left:20px !important;">State:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 2">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[1].state_id.name"/>
+                                            </t>
+                                            <span style="margin-left:20px !important;">Zip:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 2">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[1].zip"/>
+                                            </t>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Mobile:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 1">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[0].fake_phone"/>
+
+                                            </t>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Mobile:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 2">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[1].fake_phone"/>
+
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Social Security No:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 1">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[0].social_security_no"/>
+
+                                            </t>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Social Security No:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 2">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[1].social_security_no"/>
+
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Date of Birth:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 1">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[0].birth_date"
+                                                      t-options='{"widget": "date", "format": "MM/dd/yyyy"}'/>
+
+                                            </t>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>Date of Birth:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 2">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[1].birth_date"
+                                                      t-options='{"widget": "date", "format": "MM/dd/yyyy"}'/>
+
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>E-mail Address:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 1">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[0].fake_email"/>
+
+                                            </t>
+                                        </td>
+                                        <td style="width:50% !important; text-align:left !important;">
+                                            <span>E-mail Address:</span>
+                                            <t t-if="o.business_owner_ids and len(o.business_owner_ids) &gt;= 2">
+                                                <span style="font-weight:normal !important; color:black !important;"
+                                                      t-esc="o.business_owner_ids[1].fake_email"/>
+
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <br/>
+                                <p style="text-align:left; font-size:11px !important;">
+                                    The Merchant and Owner(s)/Officer(s) identified above (individually, an “Applicant”)
+                                    each represents, acknowledges and agrees that (1) all information and documents
+                                    provided to We RFunding, LLC. including credit card processor statements are true,
+                                    accurate and complete, (2) Applicant will immediately notify Company of any change
+                                    in such information or financial condition, (3) Applicant authorizes Company to
+                                    disclose all information and documents that Company may obtain including credit
+                                    reports to other persons or entities (collectively, “Assignees”) that may be
+                                    involved with or acquire commercial loans or purchases of future receivables
+                                    including Merchant Cash Advance transactions, including without limitation the
+                                    application therefore (collectively, “Transactions”) and each assignee is authorized
+                                    to use such information and documents and share such information and documents with
+                                    other Assignees, in connection with potential Transactions, (4) Each Assignee will
+                                    rely upon the accuracy and completeness of such information and documents (5)
+                                    Company, Assignees, and each of their representatives, successors, assigns and
+                                    designees (collectively, “Recipients”) are authorized to request and receive any
+                                    investigative reports, credit reports, statements from creditors or financial
+                                    institutions, verification of information, or any other information that a recipient
+                                    deems necessary, (6) Applicant waives and releases any claims against Recipients and
+                                    any information providers arising from any act or omission relating to the
+                                    requesting, receiving or release of information, and (7) Each Owner/Officer
+                                    represents that he or she is authorized to sign this form on behalf of Merchant
+                                </p>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

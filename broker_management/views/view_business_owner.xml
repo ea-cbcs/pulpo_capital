@@ -1,0 +1,111 @@
+<odoo>
+    <data>
+
+        <record id="view_res_partner_form_inherited" model="ir.ui.view">
+            <field name="name">res.partner.form.inherited</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='vat']" position="after">
+                    <field name="funder_number" readonly="1" force_save="1" string="Funder No"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Business Owners Tree View -->
+        <record id="view_res_partner_business_owner_tree" model="ir.ui.view">
+            <field name="name">res.partner.business.owner.tree</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree sample="1">
+                    <field name="name" decoration-bf="1" string="Legal Name"/>
+                    <field name="last_name" optional="hide"/>
+                    <field name="mobile" optional="show"/>
+                    <field name="email" optional="show"/>
+                    <field name="city" optional="show"/>
+                    <field name="state_id" optional="show"/>
+                    <field name="country_id" optional="hide"/>
+                    <field name="birth_date" optional="hide"/>
+                    <field name="credit_application_id" string="Company" optional="show"/>
+                    <field name="credit_score_estimate" optional="show"/>
+                    <field name="social_security_no" optional="hide"/>
+                    <field name="ownership_percent" optional="show" string="% Ownership"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Business Owners Form View -->
+        <record id="view_res_partner_business_owner_form" model="ir.ui.view">
+            <field name="name">res.partner.business.owner.form</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group string="Personal Details">
+                                <label for="name"/>
+                                <div name="name_div" class="d-flex">
+                                    <field name="name" placeholder="First"/>
+                                    <span class="oe_inline o_form_label mx-3"/>
+                                    <field name="last_name" placeholder="Last"/>
+                                </div>
+                                <field name="birth_date"/>
+                                <field name="mobile" widget="phone"/>
+                                <field name="email" widget="email"/>
+                                <field name="social_security_no"/>
+                            </group>
+                            <group string="Contact Information">
+                                <field name="street" placeholder="Street..." class="o_address_street"/>
+                                <field name="city" placeholder="City" class="o_address_city"/>
+                                <field name="state_id" class="o_address_state" placeholder="State"
+                                       options="{'no_open': True, 'no_quick_create': True}"
+                                       context="{'country_id': country_id, 'default_country_id': country_id, 'zip': zip}"/>
+                                <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                <field name="country_id" placeholder="Country" class="o_address_country"
+                                       options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"/>
+                            </group>
+                            <group string="Business Affiliation Details">
+                                <field name="ownership_percent"/>
+                                <field name="credit_score_estimate"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Business Owners Search View -->
+        <record id="view_res_partner_business_owner_search" model="ir.ui.view">
+            <field name="name">res.partner.business.owner.search</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="last_name"/>
+                    <field name="city"/>
+                    <field name="state_id"/>
+                    <field name="country_id"/>
+                    <field name="mobile"/>
+                    <field name="email"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- Business Owners Action -->
+        <record id="action_res_partner_business_owner" model="ir.actions.act_window">
+            <field name="name">Business Owners</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_res_partner_business_owner_search"/>
+            <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('view_res_partner_business_owner_tree')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('view_res_partner_business_owner_form')})]"/>
+        </record>
+
+    </data>
+</odoo>

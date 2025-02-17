@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record id="credit_app_report_template" model="report.paperformat">
+            <field name="name">European A4 low margin</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">8</field>
+            <field name="margin_bottom">30</field>
+            <field name="margin_left">4</field>
+            <field name="margin_right">4</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">10</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="credit_app_report_id" model="ir.actions.report">
+            <field name="name">Inhouse</field>
+            <field name="model">crm.lead</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">broker_management.credit_report</field>
+            <field name="report_file">broker_management.credit_report</field>
+            <field name="binding_model_id" ref="crm.model_crm_lead"/> <!-- this line was modified -->
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="credit_app_report_fake" model="ir.actions.report">
+            <field name="name">External</field>
+            <field name="model">crm.lead</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">broker_management.credit_report_fake</field>
+            <field name="report_file">broker_management.credit_report_fake</field>
+            <field name="binding_model_id" ref="crm.model_crm_lead"/> <!-- this line was modified -->
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>

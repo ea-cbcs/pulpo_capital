@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+        <record id="submit_application_wizard" model="ir.ui.view">
+            <field name="name">submit.application.wizard.form</field>
+            <field name="model">submit.application.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <div class="alert alert-info text-center" role="alert">
+                        <p class="my-0" invisible="context.get('app_submission', 0)">
+                            <b>Contact Emails specified for Selected Funders
+                            </b>
+                            will receive the Credit Application
+                            along with the selected options for attachments via email.
+                        </p>
+                        <p class="my-0" invisible="context.get('submission_to_funder', 0)">
+                            On Pressing Send, <b>the Management will receive the Credit Application</b> along with the selected options for attachments via email.
+                        </p>
+                    </div>
+                    <group string="Application Types">
+                        <group>
+                            <field name="in_house"/>
+                        </group>
+                        <group>
+                            <field name="external"/>
+                        </group>
+                    </group>
+                    <group string="Attachment Options">
+                        <group>
+                            <field name="bank_statement"/>
+                            <field name="doc_ids"/>
+                            <field name="proof_ein"/>
+                        </group>
+                        <group>
+                            <field name="voided_checks"/>
+                            <field name="extras"/>
+                        </group>
+                    </group>
+                    <group string="Funders" groups="broker_management.group_send_funders">
+                        <field name="funder_ids" widget="many2many_tags" string="Funders"
+                               domain="[('funder', '=', True)]"
+                               options="{'no_create': True, 'no_edit': True, 'no_open': True}"/>
+                    </group>
+                    <footer>
+                        <button string="Send" type="object" class="btn-primary" name="action_send_mail_funds"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>
