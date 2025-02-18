@@ -16,16 +16,15 @@ def _extract_data(values):
         # Decode field name
         field_name = re.sub('&quot;', '"', field_name)
 
-        # Check if the value is a file
-        if hasattr(field_value, 'filename'):
-            # Determine the original field name
+        # Check if the value is a list of files (e.g., multiple attachments)
+        attachments = request.httprequest.files.getlist(field_name)
+        # Iterate through each file and group them by field name
+        for file in attachments:
             original_field_name = field_name.split('[', 1)[0]
-
-            # Group attachments by field name
             if original_field_name not in data['attachments']:
                 data['attachments'][original_field_name] = []
-            field_value.field_name = original_field_name
-            data['attachments'][original_field_name].append(field_value)
+            file.field_name = original_field_name
+            data['attachments'][original_field_name].append(file)
 
     return data
 
@@ -69,6 +68,7 @@ class CrmLeadSubmissionController(http.Controller):
 
         if post and request.httprequest.method == 'POST':
             vat = post.get('vat')
+            # bank_statements = request.httprequest.files.getlist('attachment_bank_statements_ids')
 
             partner = env['res.partner'].sudo().search([('vat', '=', vat)], limit=1)
             if not partner:

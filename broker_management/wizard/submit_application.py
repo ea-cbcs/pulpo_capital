@@ -44,23 +44,23 @@ class SubmitApplicationWizard(models.TransientModel):
 
     def gather_attachment_ids(self, credit_application_id):
 
-        applications = []
+        applications = self.env['ir.attachment']
 
         if self.bank_statement:
-            applications += credit_application_id.attachment_bank_statements_ids
+            applications |= credit_application_id.attachment_bank_statements_ids
         if self.doc_ids:
-            applications += credit_application_id.attachment_id_ids
+            applications |= credit_application_id.attachment_id_ids
         if self.proof_ein:
-            applications += credit_application_id.attachment_proof_of_ein_ids
+            applications |= credit_application_id.attachment_proof_of_ein_ids
         if self.voided_checks:
-            applications += credit_application_id.attachment_voided_check_ids
+            applications |= credit_application_id.attachment_voided_check_ids
         if self.extras:
-            applications += credit_application_id.attachment_extras_ids
+            applications |= credit_application_id.attachment_extras_ids
 
         if not len(applications) and not self.in_house and not self.external:
             raise ValidationError(_("Please select attachment options for Submission."))
 
-        all_attachment_ids = [att.id for att in applications]
+        all_attachment_ids = applications.ids
 
         return all_attachment_ids
 

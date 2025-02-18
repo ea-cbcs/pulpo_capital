@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Broker Management - Werfundingllc",
+    'name': "Broker Management - PulpoCapital",
     'version': '1.0',
     'category': 'Sales/CRM',
     'summary': "Comprehensive Application Management for Brokers, Clients, and Funders.",
@@ -37,7 +37,7 @@ This module enhances transparency, automates workflows, and ensures a seamless a
     'company': 'Caribou Consulting.',
     'website': "https://www.cariboucs.com",
     'license': 'Other proprietary',
-    'depends': ['base', 'mail', 'crm', 'website'],
+    'depends': ['base', 'mail', 'crm', 'crm_iap_mine', 'website'],
     'data': [
         'data/data.xml',
         'security/ir.model.access.csv',

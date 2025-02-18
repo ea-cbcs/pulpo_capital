@@ -241,13 +241,13 @@
                                 <span class="text-danger">*</span>
                             </label>
                             <input type="file" class="form-control" name="attachment_bank_statements_ids"
-                                   multiple="True" required="1"/>
+                                   multiple="multiple" required="1"/>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Upload IDs
                                 <span class="text-danger">*</span>
                             </label>
-                            <input type="file" class="form-control" name="attachment_id_ids" multiple="True"
+                            <input type="file" class="form-control" name="attachment_id_ids" multiple="multiple"
                                    required="1"/>
                         </div>
                     </div>
@@ -258,21 +258,21 @@
                             <label class="form-label">Upload Voided Checks
                                 <span class="text-danger">*</span>
                             </label>
-                            <input type="file" class="form-control" name="attachment_voided_check_ids" multiple="True"
+                            <input type="file" class="form-control" name="attachment_voided_check_ids" multiple="multiple"
                                    required="1"/>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Upload Proof of EIN
                                 <span class="text-danger">*</span>
                             </label>
-                            <input type="file" class="form-control" name="attachment_proof_of_ein_ids" multiple="True"
+                            <input type="file" class="form-control" name="attachment_proof_of_ein_ids" multiple="multiple"
                                    required="1"/>
                         </div>
                     </div>
                     <div class="row mt-4">
                         <div class="col-md-6">
                             <label class="form-label">Upload Additional Documents</label>
-                            <input type="file" class="form-control" name="attachment_extras_ids" multiple="True"/>
+                            <input type="file" class="form-control" name="attachment_extras_ids" multiple="multiple"/>
                         </div>
                     </div>
                     <!-- Submit Button -->

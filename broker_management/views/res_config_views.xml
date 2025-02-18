@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="werfunding_config_settings_view_form" model="ir.ui.view">
-            <field name="name">res.config.settings.form.inherit.werfunding</field>
+        <record id="pulpocapital_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.form.inherit.pulpocapital</field>
             <field name="model">res.config.settings</field>
             <field name="priority" eval="1"/>
             <field name="inherit_id" ref="base.res_config_settings_view_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//form" position="inside">
-                    <app data-string="Wefundingllc" string="Werfundingllc" name="broker_management">
+                    <app data-string="Pulpo Capital" string="Pulpo Capital" name="broker_management">
                         <block id="web_application_configuration" title="Configuration">
-                            <!-- URL Setting -->
-                            <setting id="web_app_page_url_wefunding" title="Web Application Page URL" string="Web Application Page URL" help="URL where clients can submit web application.">
-                                <field name="web_app_page_url" readonly="1"/>
-                            </setting>
-                            <setting id="web_app_page_url_werfunding" title="Web Application Page Password" string="Web Application Page Password" help="Enter the password to access web application form.">
+<!--                            <setting id="web_app_page_url_wefunding" title="Web Application Page URL" string="Web Application Page URL" help="URL where clients can submit web application.">-->
+<!--                                <field name="web_app_page_url" readonly="1"/>-->
+<!--                            </setting>-->
+                            <setting id="web_app_page_url_pulpocapital" title="Web Application Page Password" string="Web Application Page Password" help="Enter the password to access web application form.">
                                 <field name="web_app_password" readonly="0"/>
                             </setting>
                         </block>
@@ -23,10 +22,10 @@
             </field>
         </record>
 
-        <record id="werfunding_config_settings_action" model="ir.actions.act_window">
+        <record id="pulpocapital_config_settings_action" model="ir.actions.act_window">
             <field name="name">Settings</field>
             <field name="res_model">res.config.settings</field>
-            <field name="view_id" ref="broker_management.werfunding_config_settings_view_form"/>
+            <field name="view_id" ref="broker_management.pulpocapital_config_settings_view_form"/>
             <field name="view_mode">form</field>
             <field name="target">inline</field>
             <field name="context">{'module' : 'broker_management', 'bin_size': False}</field>
