@@ -9,7 +9,7 @@
                 <h2 class="mb-4">Business Information</h2>
                 <form id="crm_lead_form" action="/crm/lead_submission" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                    <input type="hidden" name="web_submission" value="1"/>
+                    <input type="hidden" name="salesperson" t-att-value="funding_specialist_id"/>
 
                     <div class="row">
                         <!-- VAT & Legal Corporate Name -->
@@ -258,14 +258,16 @@
                             <label class="form-label">Upload Voided Checks
                                 <span class="text-danger">*</span>
                             </label>
-                            <input type="file" class="form-control" name="attachment_voided_check_ids" multiple="multiple"
+                            <input type="file" class="form-control" name="attachment_voided_check_ids"
+                                   multiple="multiple"
                                    required="1"/>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Upload Proof of EIN
                                 <span class="text-danger">*</span>
                             </label>
-                            <input type="file" class="form-control" name="attachment_proof_of_ein_ids" multiple="multiple"
+                            <input type="file" class="form-control" name="attachment_proof_of_ein_ids"
+                                   multiple="multiple"
                                    required="1"/>
                         </div>
                     </div>

@@ -18,6 +18,7 @@ class SubmitApplicationWizard(models.TransientModel):
     bank_statement = fields.Boolean(string="Bank Statements")
     voided_checks = fields.Boolean(string="Voided Checks")
     extras = fields.Boolean(string="Extras")
+    email_message = fields.Html(string='Message', default=lambda self: self._context.get('additional_notes'))
 
     def _generate_application_pdf(self, app_id_ref):
         company_name = self.credit_application_id.partner_id.name
@@ -69,7 +70,7 @@ class SubmitApplicationWizard(models.TransientModel):
             raise ValidationError(_("Please Select Funders to Send the application."))
 
         Mail = self.env['mail.mail']
-        body = self.credit_application_id.additional_notes
+        body = self.email_message
         subject = f'New Submission - {self.credit_application_id.partner_id.name} - {self.credit_application_id.app_id}'
         attachment_ids = self.gather_attachment_ids(self.credit_application_id)
 

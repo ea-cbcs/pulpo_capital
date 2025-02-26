@@ -5,6 +5,26 @@ from odoo.exceptions import ValidationError
 from ..models.crm_lead import _generate_fake_email, _generate_fake_phone
 
 
+class ResUsersInherit(models.Model):
+    _inherit = 'res.users'
+
+    broker_application_link = fields.Char(
+        string="Broker Application Link",
+        compute="_compute_broker_application_link",
+        precompute=True,
+        store=False
+    )
+
+    def _compute_broker_application_link(self):
+        """Computes the broker application link for the user."""
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url', default='')
+        for user in self:
+            if base_url:
+                user.broker_application_link = f"{base_url}/crm/lead_submission?user_id={user.id}"
+            else:
+                user.broker_application_link = "Base URL not configured"
+
+
 class ResPartnerInherit(models.Model):
     _inherit = 'res.partner'
     _sql_constraints = [

@@ -1,5 +1,17 @@
 <odoo>
     <data>
+
+        <record id="view_res_users_form_inherited" model="ir.ui.view">
+            <field name="name">res.users.preference.form.inherited</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tz']" position="after">
+                    <field name="broker_application_link" readonly="1" widget="url"/>
+                </xpath>
+            </field>
+        </record>
+
         <record id="view_credit_application_list" model="ir.ui.view">
             <field name="name">crm.lead.credit.application.list</field>
             <field name="model">crm.lead</field>
@@ -13,6 +25,7 @@
                     <field name="city" optional="show"/>
                     <field name="state_id" optional="hide"/>
                     <field name="phone" optional="show"/>
+                    <field name="user_id" string="Funding Specialist" optional="show"/>
                 </list>
             </field>
         </record>
@@ -107,7 +120,7 @@
                                        context="{'country_id': country_id, 'default_country_id': country_id, 'zip': zip}"/>
                                 <field name="user_id" widget="many2one_avatar_user"
                                        groups="broker_management.group_send_funders" string="Funding Specialist"
-                                       optoins="{'no_edit': True, 'no_create': True}"/>
+                                       optoins="{'no_edit': True, 'no_create': True}" readonly="1"/>
                                 <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                                 <field name="country_id" readonly="web_submission" placeholder="Country"
                                        class="o_address_country"

@@ -13,7 +13,8 @@
                             along with the selected options for attachments via email.
                         </p>
                         <p class="my-0" invisible="context.get('submission_to_funder', 0)">
-                            On Pressing Send, <b>the Management will receive the Credit Application</b> along with the selected options for attachments via email.
+                            On Pressing Send, <b>the Management will receive the Credit Application</b> along with the
+                            selected options for attachments via email.
                         </p>
                     </div>
                     <group string="Application Types">
@@ -34,6 +35,10 @@
                             <field name="voided_checks"/>
                             <field name="extras"/>
                         </group>
+                    </group>
+                    <br/>
+                    <group>
+                    <field name="email_message" placeholder="If you want to write a custom message for the email, please type here..." options="{'collaborative': true}" nolabel="1"/>
                     </group>
                     <group string="Funders" groups="broker_management.group_send_funders">
                         <field name="funder_ids" widget="many2many_tags" string="Funders"

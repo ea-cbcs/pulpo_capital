@@ -184,7 +184,8 @@ class CreditApplication(models.Model):
             'view_id': self.env.ref('broker_management.submit_application_wizard').id,
             'target': 'new',
             'context': {
-                'default_credit_application_id': self.id, 'app_submission': True, 'submission_to_funder': False
+                'default_credit_application_id': self.id, 'app_submission': True, 'submission_to_funder': False,
+                'additional_notes': self.additional_notes
             }
         }
 

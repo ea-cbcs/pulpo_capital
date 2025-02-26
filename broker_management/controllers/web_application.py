@@ -51,6 +51,7 @@ class CrmLeadSubmissionController(http.Controller):
             'industries': industries,
             'states': states,
             'countries': countries,
+            'funding_specialist_id': request.params.get('user_id')
         }
 
         view = env.ref('broker_management.crm_lead_submission')
@@ -67,6 +68,8 @@ class CrmLeadSubmissionController(http.Controller):
             raise error
 
         if post and request.httprequest.method == 'POST':
+            # Log the entire request for debugging
+            salesperson = request.env['res.users'].sudo().browse(int(post.get('salesperson')))
             vat = post.get('vat')
             # bank_statements = request.httprequest.files.getlist('attachment_bank_statements_ids')
 
@@ -123,7 +126,7 @@ class CrmLeadSubmissionController(http.Controller):
                 'web_submission': True,
                 'name': post.get('legal_corporate_name'),
                 'partner_id': partner.id,
-                'user_id': env.ref('base.user_admin').id,
+                'user_id': salesperson.id if salesperson else False,
                 'business_start_date': post.get('business_start_date'),
                 'business_owner_ids': [(6, 0, [owner_1_id, owner_2_id])],
             })
@@ -150,13 +153,4 @@ class CrmLeadSubmissionController(http.Controller):
 
             return request.redirect('/contactus-thank-you')
 
-        industries = env['res.partner.industry'].sudo().search([])
-        states = env['res.country.state'].sudo().search([('country_id.code', '=', 'US')])
-        countries = env['res.country'].sudo().search([])
-
-        values = {
-            'industries': industries,
-            'states': states,
-            'countries': countries,
-        }
         return request.render("broker_management.crm_lead_submission", values)
