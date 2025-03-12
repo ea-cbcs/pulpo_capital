@@ -86,7 +86,8 @@ class CrmLeadSubmissionController(http.Controller):
                     'city': post.get('city'),
                     'zip': post.get('zip'),
                     'country_id': country_usa.id if country_usa else False,
-                    'is_company': True
+                    'is_company': True,
+                    'is_lead_vici': True
                 })
 
             owner_1_data = {
@@ -102,6 +103,7 @@ class CrmLeadSubmissionController(http.Controller):
                 'city': post.get('owner1_city'),
                 'state_id': int(post.get('owner1_state_id')) if post.get('owner1_state_id') else False,
                 'zip': post.get('owner1_zip'),
+                'is_lead_vici': True
             }
 
             owner_2_data = {
@@ -117,6 +119,7 @@ class CrmLeadSubmissionController(http.Controller):
                 'city': post.get('owner2_city'),
                 'state_id': int(post.get('owner2_state_id')) if post.get('owner2_state_id') else False,
                 'zip': post.get('owner2_zip'),
+                'is_lead_vici': True
             }
 
             owner_1_id = _get_or_create_partner(owner_1_data)

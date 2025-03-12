@@ -60,3 +60,12 @@ add logo to app. ✓
 	no open option for industries. ✓
 	Stage visibility for applications. ✓
 	web based url for now. hide option in settings. ✓
+
+
+	message box for emails. ✓
+
+	brokers have their dedicated web app links. ✓
+		available on their user icon. ✓
+		link will have it's functionality integrated. ✓
+		funding specialist readonly. ✓
+

@@ -189,12 +189,12 @@ class CreditApplication(models.Model):
             }
         }
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            vals['app_id'] = self.env['ir.sequence'].next_by_code('credit.application') or _('New')
 
-        vals['app_id'] = self.env['ir.sequence'].next_by_code('credit.application') or _('New')
+            vals['fake_business_phone'] = _generate_fake_phone()
 
-        vals['fake_business_phone'] = _generate_fake_phone()
-
-        res = super().create(vals)
+        res = super().create(vals_list)
         return res
