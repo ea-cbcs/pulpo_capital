@@ -63,8 +63,8 @@ class ResPartnerInherit(models.Model):
         else:
             raise ValueError("Failed to download the audio file")
 
-    vicidial_lead_id = fields.Char(string="Vicidial Lead ID", readonly=True)
-    is_vici_lead = fields.Boolean(string="Vicidial Lead?", readonly=True)
+    # vicidial_lead_id = fields.Char(string="Vicidial Lead ID", readonly=True)
+    # is_vici_lead = fields.Boolean(string="Vicidial Lead?", readonly=True)
 
     business_owner = fields.Boolean(string='Business Owner?')
     funder = fields.Boolean(string='Funder?')
@@ -176,29 +176,29 @@ class ResPartnerInherit(models.Model):
         for vals in vals_list:
             vals['fake_email'] = _generate_fake_email()
             vals['fake_phone'] = _generate_fake_phone()
-            if self._context.get('is_vici_lead'):
-                vals['is_vici_lead'] = True
-            if vals.get('is_vici_lead', False):
-                vicidial_lead_id = self.create_lead_in_vicidial(vals)
-                if vicidial_lead_id:
-                    vals['vicidial_lead_id'] = vicidial_lead_id
+            # if self._context.get('is_vici_lead'):
+            #     vals['is_vici_lead'] = True
+            # if vals.get('is_vici_lead', False):
+            #     vicidial_lead_id = self.create_lead_in_vicidial(vals)
+            #     if vicidial_lead_id:
+            #         vals['vicidial_lead_id'] = vicidial_lead_id
 
         return super().create(vals_list)
 
     def write(self, vals):
         """Overrides write to automatically update Vicidial lead when relevant fields change."""
-        for record in self:
-            if record.vicidial_lead_id:
-                changes = {}
-                for odoo_field, vicidial_param in self._get_vicidial_field_mapping().items():
-                    if odoo_field in vals and vals[odoo_field] != record[odoo_field]:
-                        changes[vicidial_param] = vals[odoo_field]
-
-                res = super(ResPartnerInherit, record).write(vals)
-
-                if changes:
-                    record.update_lead_in_vicidial(record.vicidial_lead_id, changes)
-
-                return res
+        # for record in self:
+        #     if record.vicidial_lead_id:
+        #         changes = {}
+        #         for odoo_field, vicidial_param in self._get_vicidial_field_mapping().items():
+        #             if odoo_field in vals and vals[odoo_field] != record[odoo_field]:
+        #                 changes[vicidial_param] = vals[odoo_field]
+        #
+        #         res = super(ResPartnerInherit, record).write(vals)
+        #
+        #         if changes:
+        #             record.update_lead_in_vicidial(record.vicidial_lead_id, changes)
+        #
+        #         return res
 
         return super(ResPartnerInherit, self).write(vals)
