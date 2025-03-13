@@ -113,8 +113,7 @@
                             <button
                                     name="action_view_attachment_bank_statements"
                                     type="object"
-                                    class="oe_stat_button"
-                                    invisible="not bank_statements_count" icon="fa-university">
+                                    class="oe_stat_button" icon="fa-university">
                                 <field string="Bank Statements" name="bank_statements_count" widget="statinfo"/>
                             </button>
                             <button

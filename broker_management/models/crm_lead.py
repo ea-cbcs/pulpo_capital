@@ -104,7 +104,7 @@ class CreditApplication(models.Model):
             'view_id': self.env.ref('broker_management.view_application_attachment_kanban').id,
             'res_model': 'ir.attachment',
             'domain': [('id', 'in', self.attachment_bank_statements_ids.ids)],
-            'context': {'create': 0, 'edit': 0, 'delete': 0},
+            'context': {'create': 1, 'edit': 0, 'delete': 0, 'default_res_id': self.id, 'default_res_model': self._name, 'relation_field': 'attachment_bank_statements_ids'},
             'target': 'current',
         }
 
@@ -203,3 +203,29 @@ class CreditApplication(models.Model):
 
         res = super().create(vals_list)
         return res
+
+
+class IrAttachment(models.Model):
+    _inherit = 'ir.attachment'
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        """Override create to attach the file to the corresponding many2many field of the related record."""
+        context = self.env.context
+        attachments = super(IrAttachment, self).create(vals_list)
+
+        for attachment in attachments:
+
+            # Check if the context contains 'default_res_id' and 'default_res_model'
+            default_res_id = context.get('default_res_id')
+            default_res_model = context.get('default_res_model')
+            relation_field = context.get('relation_field')  # Field name to update
+
+            if default_res_id and default_res_model and relation_field:
+                related_model = self.env[default_res_model].browse(default_res_id)
+                if related_model and hasattr(related_model, relation_field):
+                    # Append the newly created attachment to the many2many field
+                    existing_attachments = related_model[relation_field].ids
+                    related_model.write({relation_field: [(6, 0, existing_attachments + [attachment.id])]})
+
+        return attachments
